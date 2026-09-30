@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/*
+  Design tokens for the portfolio shell.
+  Deliberately small: this is a portfolio, not a product design system.
+  Client project screens carry their own brand colors inside case-study
+  imagery — these tokens are only for the site's own chrome/typography.
+*/
+
+:root {
+  /* Color */
+  --color-ink: #121110; /* near-black, softened (not pure #000) */
+  --color-ink-muted: #4a4744;
+  --color-paper: #f6f4ef; /* warm off-white, softened (not pure #fff) */
+  --color-paper-muted: #ece8df;
+  --color-accent: #b5723a; /* restrained warm clay — used sparingly */
+  --color-border: #d9d4c8;
+
+  /* Type scale — fluid via clamp(), 6 steps */
+  --font-size-xs: clamp(0.78rem, 0.74rem + 0.2vw, 0.875rem);
+  --font-size-sm: clamp(0.9rem, 0.86rem + 0.2vw, 1rem);
+  --font-size-base: clamp(1rem, 0.96rem + 0.25vw, 1.125rem);
+  --font-size-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --font-size-xl: clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+  --font-size-2xl: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  --font-size-3xl: clamp(3.25rem, 2.5rem + 4vw, 6.5rem);
+
+  /* Spacing — 8px base scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+  --space-24: 12rem;
+
+  /* Radii — minimal, not the rounded-card-everywhere look */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --color-ink: #f6f4ef;
+  --color-ink-muted: #b7b2a6;
+  --color-paper: #121110;
+  --color-paper-muted: #1c1a18;
+  --color-accent: #d99a63;
+  --color-border: #322f2b;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-paper: var(--color-paper);
+  --color-paper-muted: var(--color-paper-muted);
+  --color-accent: var(--color-accent);
+  --color-border: var(--color-border);
+
+  --font-sans:
+    var(--font-body), -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-display), var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

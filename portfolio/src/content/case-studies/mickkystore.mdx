@@ -1,0 +1,93 @@
+## Context
+
+MickkyStore is retail operations software for a multi-branch business in
+Lagos (Lekki, Gbagada, Ikeja) — internal software, not a public product.
+It replaces what would otherwise be spreadsheets, WhatsApp, and memory
+for running a multi-branch retail operation.
+
+{/* PLACEHOLDER: what existed before MickkyStore — spreadsheets? paper?
+nothing formal? A sentence or two on the actual "before" state would
+sharpen the problem framing. */}
+
+## The problem
+
+A multi-branch retail operation has to coordinate inventory, sales,
+repairs, and staff across locations, without losing track of who did
+what, where, and when.
+
+{/* PLACEHOLDER: one or two sentences on the specific pain that pushed
+this from "would be nice" to "had to build it" — e.g. a stock
+discrepancy between branches, a repair with no accountability, payroll
+errors. */}
+
+## My role
+
+Sole product designer — and after designing it, built the product
+myself.
+
+## Approach
+
+MickkyStore is organized around distinct operational modules —
+Accounting, Inventory, Repair Tracking, and Team Space (staff/HR) — all
+surfaced through a single Super Admin dashboard rather than as separate
+disconnected tools.
+
+{/* PLACEHOLDER: why these specific modules, and why a unified admin
+view rather than separate apps per function? Any reasoning on module
+boundaries (e.g. why Repair Tracking is its own module rather than part
+of Inventory) would strengthen this section. */}
+
+## Key decisions
+
+### One dashboard, not a pile of tools
+
+The Super Admin dashboard surfaces staff count, total sales, open and
+completed repairs, and recent activity in one view, with quick-access
+tiles into Accounting, Inventory, Cross Messaging, and Repair Tracking
+— built so a manager can see the state of the business without
+switching between systems.
+
+### Repairs tracked like support tickets, not a spreadsheet row
+
+Each repair carries the customer's details, device, and **serial/IMEI
+number**, the logged issue, the assigned engineer, a status
+(e.g. *In Progress*), expected completion date, and diagnosis notes —
+closer to a support-ticket workflow than a simple repairs list, which
+matters for accountability across branches.
+
+### Staff accountability is branch-aware, not just role-based
+
+The Team Space module ties attendance and payroll to branch location —
+a staff-location map, Early/Late attendance status, and a full payroll
+flow (salary, bonus, deductions, net salary) — reflecting that a
+multi-branch operation needs to know not just *who* did something, but
+*where*.
+
+{/* PLACEHOLDER: one more decision — e.g. the multi-step "Add New
+Employee" flow (Personal Info → Job Info → Account Access) and why it's
+broken into stages, or the stock-transfer-between-branches flow in
+Inventory. */}
+
+## Product experience
+
+{/* Screens: Super Admin dashboard, Accounting, Inventory, Repair
+Tracking (log + detail), Team Space (staff location map, attendance,
+payroll, Add New Employee flow). Add annotated screenshots here. */}
+
+{/* OPEN QUESTION — flagging before writing further: the Figma
+designs show a pink/magenta web dashboard and a separate yellow/orange
+mobile app ("Mickkystore Software"). Confirm which is the current,
+shipped visual identity to represent here — and whether the mobile app
+should be included as its own section or left out. */}
+
+## Outcome
+
+{/* PLACEHOLDER: no outcome data confirmed yet. This is long-running,
+actively used internal software — if it's genuinely in daily use across
+all three branches, that's a fair, verifiable thing to state plainly
+(no invented numbers needed). Confirm before writing. */}
+
+## Reflection
+
+{/* PLACEHOLDER — what you'd improve or do differently, now that you've
+both designed and built (and are still maintaining) it. */}
