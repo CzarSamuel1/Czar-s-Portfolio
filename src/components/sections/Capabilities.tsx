@@ -1,41 +1,26 @@
 const capabilities = [
-  {
-    title: "Product Design",
-    description: "UX/UI, user flows, information architecture, interaction design.",
-  },
-  {
-    title: "Systems",
-    description: "Dashboards, complex workflows, design systems, responsive interfaces.",
-  },
-  {
-    title: "Product Thinking",
-    description: "Feature definition, product structure, UX decisions, prototyping.",
-  },
-  {
-    title: "Collaboration",
-    description: "Developer collaboration, design handoff, frontend understanding.",
-  },
+  { title: "Product Design", color: "var(--color-mustard)", description: "UX/UI, user flows, information architecture, interaction design." },
+  { title: "Systems", color: "var(--color-green)", description: "Dashboards, complex workflows, design systems, responsive interfaces." },
+  { title: "Product Thinking", color: "var(--color-rose)", description: "Feature definition, product structure, UX decisions, prototyping." },
+  { title: "Collaboration", color: "var(--color-sky)", description: "Developer collaboration, design handoff, frontend understanding." },
 ];
 
 export function Capabilities() {
   return (
-    <section className="border-t border-[var(--color-border)]">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <h2 className="mb-12 font-[family-name:var(--font-display)] text-[var(--font-size-sm)] uppercase tracking-[0.2em] text-[var(--color-ink-muted)]">
-          Capabilities
-        </h2>
-        <div className="grid gap-10 md:grid-cols-2 md:gap-x-16 md:gap-y-12">
-          {capabilities.map((capability) => (
-            <div key={capability.title}>
-              <h3 className="font-[family-name:var(--font-display)] text-[var(--font-size-lg)] tracking-tight">
-                {capability.title}
-              </h3>
-              <p className="mt-2 text-[var(--font-size-base)] text-[var(--color-ink-muted)]">
-                {capability.description}
-              </p>
-            </div>
-          ))}
-        </div>
+    <section className="mx-auto max-w-6xl px-6 pb-28">
+      <h2 className="hand mb-10 text-center text-3xl">what I do</h2>
+      <div className="grid gap-6 sm:grid-cols-2">
+        {capabilities.map((c) => (
+          <div key={c.title} className="bg-white p-6 shadow-[0_2px_0_var(--color-border)]">
+            <h3
+              className="inline-block px-4 py-2 text-[var(--font-size-lg)] font-semibold tracking-tight text-[var(--color-ink)]"
+              style={{ background: c.color }}
+            >
+              {c.title}
+            </h3>
+            <p className="mt-4 text-[var(--font-size-base)] text-[var(--color-ink-muted)]">{c.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

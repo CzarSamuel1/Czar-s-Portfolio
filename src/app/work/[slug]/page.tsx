@@ -12,6 +12,7 @@ const caseStudies: Record<string, () => Promise<{ default: React.ComponentType }
   deysure: () => import("@/content/case-studies/deysure.mdx"),
   mickkystore: () => import("@/content/case-studies/mickkystore.mdx"),
   swiftbeds: () => import("@/content/case-studies/swiftbeds.mdx"),
+  "letstudy-portal": () => import("@/content/case-studies/letstudy-portal.mdx"),
 };
 
 export function generateStaticParams() {
@@ -50,7 +51,7 @@ export default async function CaseStudyPage({
       <Nav />
       <main>
         <CaseStudyHeader project={project} />
-        <div className="mx-auto max-w-6xl px-6 pb-24">
+        <div className="mx-auto mb-24 max-w-4xl bg-white px-6 py-10 shadow-[0_2px_0_var(--color-border)] md:px-14 md:py-14">
           {Content ? (
             <Content />
           ) : (

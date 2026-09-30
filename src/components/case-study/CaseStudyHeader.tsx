@@ -1,44 +1,41 @@
+import { Sticker } from "@/components/canvas/Sticky";
 import type { Project } from "@/types/project";
 
 export function CaseStudyHeader({ project }: { project: Project }) {
+  const meta = [
+    { label: "Role", value: project.role, bg: "var(--color-note)" },
+    { label: "Timeline", value: project.timeline, bg: "var(--color-sage)" },
+    { label: "Year", value: project.year, bg: "#bfe3f3" },
+  ];
   return (
-    <header className="mx-auto max-w-6xl px-6 pb-12 pt-16 md:pt-24">
-      <p className="text-[var(--font-size-sm)] uppercase tracking-[0.2em] text-[var(--color-ink-muted)]">
-        {project.category}
-      </p>
-      <h1 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-[var(--font-size-2xl)] leading-[1.02] tracking-tight">
-        {project.title}
-      </h1>
-      <p className="mt-4 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]">
+    <header className="mx-auto max-w-4xl px-6 pb-14 pt-14 text-center md:pt-20">
+      <Sticker color="var(--color-mustard)" rotate={-4}>
+        {project.category.toUpperCase()}
+      </Sticker>
+      <h1 className="pixel mt-8 text-[clamp(2.5rem,9vw,6rem)] !leading-[1.05]">{project.title}</h1>
+      <p className="mx-auto mt-6 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]">
         {project.summary}
       </p>
-      <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-4 border-t border-[var(--color-border)] pt-6 text-[var(--font-size-sm)] sm:grid-cols-4">
-        <div>
-          <dt className="text-[var(--color-ink-muted)]">Role</dt>
-          <dd className="mt-1">{project.role}</dd>
-        </div>
-        <div>
-          <dt className="text-[var(--color-ink-muted)]">Timeline</dt>
-          <dd className="mt-1">{project.timeline}</dd>
-        </div>
-        <div>
-          <dt className="text-[var(--color-ink-muted)]">Year</dt>
-          <dd className="mt-1">{project.year}</dd>
-        </div>
-        {project.liveUrl && (
-          <div>
-            <dt className="text-[var(--color-ink-muted)]">Live</dt>
-            <dd className="mt-1">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:text-[var(--color-accent)]"
-              >
-                Visit &rarr;
-              </a>
-            </dd>
+      <dl className="mt-10 flex flex-wrap justify-center gap-4">
+        {meta.map((m, i) => (
+          <div
+            key={m.label}
+            className="min-w-40 px-5 py-4 text-left shadow-[0_6px_14px_rgba(20,19,18,0.12)]"
+            style={{ background: m.bg, transform: `rotate(${i % 2 ? 1.5 : -1.5}deg)` }}
+          >
+            <dt className="mono text-[11px] font-bold tracking-[0.18em] uppercase">{m.label}</dt>
+            <dd className="mt-1 text-[var(--font-size-sm)]">{m.value}</dd>
           </div>
+        ))}
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mono grid place-items-center border-2 border-[var(--color-ink)] px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase transition-colors hover:bg-[var(--color-ink)] hover:text-white"
+          >
+            Visit live ↗
+          </a>
         )}
       </dl>
     </header>

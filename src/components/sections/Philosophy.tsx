@@ -1,16 +1,16 @@
+import { Sticky } from "@/components/canvas/Sticky";
+
 export function Philosophy() {
   return (
-    <section className="border-t border-[var(--color-border)] bg-[var(--color-paper-muted)]">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <p className="max-w-2xl font-[family-name:var(--font-display)] text-[var(--font-size-xl)] leading-snug tracking-tight">
+    <section className="mx-auto max-w-6xl px-6 pb-28">
+      <Sticky tone="note" rotate={-1.5} className="mx-auto max-w-2xl !px-8 !py-8 md:!px-12 md:!py-10">
+        <p className="text-[clamp(1.25rem,2.4vw,1.75rem)] leading-snug tracking-tight">
           I don&rsquo;t start with visual decoration. I start by understanding
-          the problem, structuring the information, designing the
-          experience &mdash; then refining the interface.
+          the problem, structuring the information, designing the experience,
+          then refining the interface.
         </p>
-        <p className="mt-8 text-[var(--font-size-sm)] uppercase tracking-[0.2em] text-[var(--color-ink-muted)]">
-          Complexity &rarr; Structure &rarr; Clarity
-        </p>
-      </div>
+        <p className="hand mt-5 text-2xl">complexity, then structure, then clarity</p>
+      </Sticky>
     </section>
   );
 }

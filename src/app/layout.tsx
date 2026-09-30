@@ -1,19 +1,34 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Doto, JetBrains_Mono, Caveat } from "next/font/google";
+import { CursorChip } from "@/components/canvas/CursorChip";
 import "./globals.css";
 
-// Display face: an editorial variable serif with real character —
-// used for headlines only. Body stays on a clean, highly legible sans.
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  axes: ["opsz", "SOFT", "WONK"],
-  display: "swap",
-});
-
-const inter = Inter({
+const body = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+});
+// Headings inside pages use the same grotesque; --font-display is kept so
+// existing pages/MDX keep working without edits.
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+const pixel = Doto({
+  subsets: ["latin"],
+  variable: "--font-pixel",
+  axes: ["ROND"],
+  display: "swap",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+const hand = Caveat({
+  subsets: ["latin"],
+  variable: "--font-hand",
   display: "swap",
 });
 
@@ -37,8 +52,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${body.variable} ${display.variable} ${pixel.variable} ${mono.variable} ${hand.variable}`}
+    >
+      <body>
+        {children}
+        <CursorChip />
+      </body>
     </html>
   );
 }

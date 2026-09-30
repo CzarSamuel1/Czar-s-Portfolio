@@ -7,13 +7,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h2: (props) => (
       <h2
-        className="mt-16 font-[family-name:var(--font-display)] text-[var(--font-size-xl)] tracking-tight first:mt-0"
+        className="mt-16 font-[family-name:var(--font-display)] text-[var(--font-size-xl)] font-semibold tracking-tight first:mt-0"
         {...props}
       />
     ),
     h3: (props) => (
       <h3
-        className="mt-10 font-[family-name:var(--font-display)] text-[var(--font-size-lg)] tracking-tight"
+        className="mt-10 font-[family-name:var(--font-display)] text-[var(--font-size-lg)] font-semibold tracking-tight"
         {...props}
       />
     ),
@@ -31,7 +31,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     blockquote: (props) => (
       <blockquote
-        className="mt-6 max-w-2xl border-l-2 border-[var(--color-accent)] pl-4 font-[family-name:var(--font-display)] text-[var(--font-size-lg)] italic tracking-tight"
+        className="mt-6 max-w-2xl bg-[var(--color-note)] px-6 py-4 font-[family-name:var(--font-display)] text-[var(--font-size-lg)] tracking-tight shadow-[0_6px_14px_rgba(20,19,18,0.12)] [transform:rotate(-0.8deg)]"
         {...props}
       />
     ),
