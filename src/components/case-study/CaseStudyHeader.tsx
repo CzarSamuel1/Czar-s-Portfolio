@@ -1,5 +1,5 @@
 import { Sticker } from "@/components/canvas/Sticky";
-import type { Project } from "@/types/project";
+import { kicker, type Project } from "@/types/project";
 
 export function CaseStudyHeader({ project }: { project: Project }) {
   const meta = [
@@ -10,7 +10,7 @@ export function CaseStudyHeader({ project }: { project: Project }) {
   return (
     <header className="mx-auto max-w-4xl px-5 pb-14 pt-12 text-center md:pt-20">
       <Sticker color="var(--color-mustard)" rotate={-4}>
-        {project.category.toUpperCase()}
+        {kicker(project).toUpperCase()}
       </Sticker>
       <h1 className="pixel mt-8 text-[clamp(2.5rem,9vw,6rem)] !leading-[1.05]">{project.title}</h1>
       <p className="mx-auto mt-6 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]">

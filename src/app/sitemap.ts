@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/types/project";
+import { publicProjects } from "@/types/project";
 
 // PLACEHOLDER: replace with the real production domain once decided,
 // and keep in sync with metadataBase in layout.tsx.
@@ -13,12 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/contact`, changeFrequency: "yearly", priority: 0.5 },
   ];
 
-  const projectRoutes: MetadataRoute.Sitemap = projects
+  const projectRoutes: MetadataRoute.Sitemap = publicProjects
     .filter((p) => p.hasCaseStudy || !p.isPlaceholder)
     .map((p) => ({
       url: `${baseUrl}/work/${p.slug}`,
       changeFrequency: "monthly",
-      priority: p.tier === "primary" ? 0.9 : 0.6,
+      priority: p.section === "featured" ? 0.9 : 0.6,
     }));
 
   return [...staticRoutes, ...projectRoutes];

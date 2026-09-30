@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { primaryProjects, type Project } from "@/types/project";
+import { featuredProjects, kicker, type Project } from "@/types/project";
 
 export function ProjectFolder({ project, tone }: { project: Project; tone: string }) {
   return (
@@ -32,7 +32,7 @@ export function ProjectFolder({ project, tone }: { project: Project; tone: strin
           {project.summary}
         </p>
         <p className="mono mt-3 text-xs tracking-[0.12em] text-[#8b8780]">
-          {project.category.toUpperCase()} / {project.year}
+          {kicker(project).toUpperCase()} / {project.year}
         </p>
       </div>
     </Link>
@@ -50,7 +50,7 @@ const handleSpots = ["-left-1.5 -top-1.5", "-right-1.5 -top-1.5", "-left-1.5 -bo
 
 function StackPanel({ project, index, isLast }: { project: Project; index: number; isLast: boolean }) {
   const c = panels[index % panels.length]!;
-  const tags = project.category.split(" / ");
+  const tags = project.tags;
   const num = String(index + 1).padStart(2, "0");
 
   return (
@@ -139,16 +139,18 @@ function StackPanel({ project, index, isLast }: { project: Project; index: numbe
   );
 }
 
-export function SelectedWork() {
+export function SelectedWork({ showHeading = true }: { showHeading?: boolean }) {
   return (
     <section>
-      <div className="mb-14 px-6 text-center">
-        <p className="hand text-3xl">every project, one canvas</p>
-        <h2 className="pixel mt-4 text-[clamp(2.5rem,8vw,5.5rem)]">All works</h2>
-      </div>
-      <div style={{ timelineScope: primaryProjects.map((_, i) => `--p${i}`).join(", ") } as React.CSSProperties}>
-        {primaryProjects.map((project, i) => (
-          <StackPanel key={project.slug} project={project} index={i} isLast={i === primaryProjects.length - 1} />
+      {showHeading && (
+        <div className="mb-14 px-6 text-center">
+          <p className="hand text-3xl">every project, one canvas</p>
+          <h2 className="pixel mt-4 text-[clamp(2.5rem,8vw,5.5rem)]">All works</h2>
+        </div>
+      )}
+      <div style={{ timelineScope: featuredProjects.map((_, i) => `--p${i}`).join(", ") } as React.CSSProperties}>
+        {featuredProjects.map((project, i) => (
+          <StackPanel key={project.slug} project={project} index={i} isLast={i === featuredProjects.length - 1} />
         ))}
       </div>
     </section>

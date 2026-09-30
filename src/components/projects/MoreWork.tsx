@@ -1,10 +1,9 @@
-import { secondaryProjects, otherProjects } from "@/types/project";
+import { moreProjects, brandProjects } from "@/types/project";
 import { ProjectFolder } from "./SelectedWork";
 
+/** Homepage strip: secondary product work + brand work, folder cards. */
 export function MoreWork() {
-  const projects = [...secondaryProjects, ...otherProjects].filter(
-    (p) => !p.isPlaceholder || p.slug === "trivarse",
-  );
+  const projects = [...moreProjects, ...brandProjects];
   if (projects.length === 0) return null;
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24">
