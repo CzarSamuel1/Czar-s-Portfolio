@@ -8,7 +8,7 @@ export function CaseStudyHeader({ project }: { project: Project }) {
     { label: "Year", value: project.year, bg: "#bfe3f3" },
   ];
   return (
-    <header className="mx-auto max-w-4xl px-6 pb-14 pt-14 text-center md:pt-20">
+    <header className="mx-auto max-w-4xl px-5 pb-14 pt-12 text-center md:pt-20">
       <Sticker color="var(--color-mustard)" rotate={-4}>
         {project.category.toUpperCase()}
       </Sticker>
@@ -20,7 +20,7 @@ export function CaseStudyHeader({ project }: { project: Project }) {
         {meta.map((m, i) => (
           <div
             key={m.label}
-            className="min-w-40 px-5 py-4 text-left shadow-[0_6px_14px_rgba(20,19,18,0.12)]"
+            className="min-w-36 flex-1 sm:flex-none px-5 py-4 text-left shadow-[0_6px_14px_rgba(20,19,18,0.12)]"
             style={{ background: m.bg, transform: `rotate(${i % 2 ? 1.5 : -1.5}deg)` }}
           >
             <dt className="mono text-[11px] font-bold tracking-[0.18em] uppercase">{m.label}</dt>

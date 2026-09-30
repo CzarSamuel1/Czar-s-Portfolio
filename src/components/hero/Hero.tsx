@@ -1,5 +1,6 @@
 import { Clock } from "@/components/canvas/Clock";
 import { Draggable } from "@/components/canvas/Draggable";
+import { ScrollText } from "@/components/canvas/ScrollText";
 import { Sticky, Sticker } from "@/components/canvas/Sticky";
 
 const handles = ["-left-1 -top-1", "-right-1 -top-1", "-left-1 -bottom-1", "-right-1 -bottom-1"];
@@ -32,14 +33,14 @@ export function Hero() {
         </div>
       </div>
 
-      <h1 className="pixel relative mt-8 w-full max-w-5xl border border-[var(--color-sky)] px-3 py-5 text-[clamp(2rem,8.5vw,6.5rem)] md:px-8 md:py-7">
-        Samuel Monday
+      <h1 className="pixel relative mt-8 w-full max-w-5xl border border-[var(--color-sky)] px-2 py-5 text-[clamp(3rem,15vw,4.75rem)] sm:text-[clamp(2rem,8.5vw,6.5rem)] md:px-8 md:py-7">
+        <span className="block sm:inline">Samuel</span> <span className="block sm:inline">Monday</span>
         {handles.map((pos) => (
           <span key={pos} aria-hidden="true" className={`absolute size-2.5 border border-[var(--color-sky)] bg-white ${pos}`} />
         ))}
       </h1>
 
-      <p className="mono mt-10 flex items-center gap-3 text-xs font-bold tracking-[0.2em] sm:text-sm sm:tracking-[0.25em]">
+      <p className="mono mt-10 flex items-center gap-3 text-xs font-bold tracking-[0.16em] sm:text-sm sm:tracking-[0.25em]">
         <span className="size-3 rounded-full bg-[var(--color-sky)]" aria-hidden="true" />
         AVAILABLE FOR NEW WORK
       </p>
@@ -47,7 +48,7 @@ export function Hero() {
       <div className="mt-10 flex w-full flex-col items-center gap-5 sm:flex-row sm:justify-center lg:hidden">
         {notes.map((n) => (
           <Draggable key={n.tone} rotate={n.rotate} delay={n.delay}>
-            <Sticky tone={n.tone} className="w-64 text-left">{n.body}</Sticky>
+            <Sticky tone={n.tone} className="w-[min(16rem,100%)] text-left">{n.body}</Sticky>
           </Draggable>
         ))}
       </div>
@@ -62,13 +63,17 @@ export function Hero() {
             <Sticker color="var(--color-rose)" tail="right" className="!text-white">LAGOS · WAT</Sticker>
           </Draggable>
         </div>
-        <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.15] tracking-tight">
-          I design digital products from idea to interface.
-        </h2>
-        <p className="mx-auto mt-6 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]">
-          SaaS, business tools, and consumer experiences, built around how the
-          work actually happens.
-        </p>
+        <ScrollText
+          as="h2"
+          text="I design digital products from idea to interface."
+          offset={["start 0.98", "end 0.6"]}
+          className="text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.15] tracking-tight"
+        />
+        <ScrollText
+          text="SaaS, business tools, and consumer experiences, built around how the work actually happens."
+          offset={["start 0.98", "end 0.65"]}
+          className="mx-auto mt-6 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]"
+        />
       </div>
     </section>
   );

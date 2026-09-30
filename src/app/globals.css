@@ -61,6 +61,7 @@ body {
   background-size: var(--grid) var(--grid);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  overflow-x: clip; /* rotated notes/stickers never cause sideways scroll */
 }
 
 /* Dot-matrix display type */
@@ -99,7 +100,7 @@ body {
   to { transform: scale(0.965); filter: brightness(0.86); }
 }
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
     .recede {
       transform-origin: 50% 0;
       animation: recede linear both;

@@ -57,7 +57,7 @@ function StackPanel({ project, index, isLast }: { project: Project; index: numbe
     // All panels stick at the same line; later ones slide over earlier ones,
     // and each panel's tab stays visible because the tab row is transparent.
     <article
-      className="sticky top-[var(--header-h)] flex min-h-[calc(100svh-var(--header-h))] flex-col"
+      className="relative flex flex-col md:sticky md:top-[var(--header-h)] md:min-h-[calc(100svh-var(--header-h))]"
       style={{ "--i": index, viewTimelineName: `--p${index}` } as React.CSSProperties}
     >
       <div className="relative h-14 shrink-0">
@@ -76,7 +76,7 @@ function StackPanel({ project, index, isLast }: { project: Project; index: numbe
       </div>
 
       <div
-        className={`grid flex-1 gap-10 px-6 py-10 shadow-[0_-14px_30px_rgba(20,19,18,0.14)] md:grid-cols-2 md:gap-16 md:px-16 md:py-14${isLast ? "" : " recede"}`}
+        className={`grid flex-1 gap-10 px-5 py-10 shadow-[0_-14px_30px_rgba(20,19,18,0.14)] md:grid-cols-2 md:gap-16 md:px-16 md:py-14${isLast ? "" : " recede"}`}
         style={{ background: c.bg, color: c.fg, animationTimeline: isLast ? undefined : `--p${index + 1}` } as React.CSSProperties}
       >
         <div className="flex flex-col justify-between gap-10">
@@ -85,7 +85,7 @@ function StackPanel({ project, index, isLast }: { project: Project; index: numbe
               <span className="size-3 rounded-full" style={{ background: c.fg }} aria-hidden="true" />
               {tags.join(" · ")}
             </p>
-            <h3 className="mt-5 text-[clamp(2.5rem,5.5vw,4.5rem)] font-semibold leading-none tracking-tight">
+            <h3 className="mt-5 text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-none tracking-tight">
               {project.title}
             </h3>
             <p className="mt-6 max-w-md text-[var(--font-size-lg)] leading-snug">{project.summary}</p>

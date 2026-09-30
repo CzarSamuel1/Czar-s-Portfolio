@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Nav } from "@/components/navigation/Nav";
 import { CaseStudyHeader } from "@/components/case-study/CaseStudyHeader";
+import { ProjectFolder } from "@/components/projects/SelectedWork";
 import { projects } from "@/types/project";
 
 // Maps a project slug to its MDX case-study content.
@@ -46,12 +47,15 @@ export default async function CaseStudyPage({
   const loadContent = caseStudies[slug];
   const Content = loadContent ? (await loadContent()).default : null;
 
+  const i = projects.findIndex((p) => p.slug === slug);
+  const next = projects[(i + 1) % projects.length]!;
+
   return (
     <>
       <Nav />
       <main>
         <CaseStudyHeader project={project} />
-        <div className="mx-auto mb-24 max-w-4xl bg-white px-6 py-10 shadow-[0_2px_0_var(--color-border)] md:px-14 md:py-14">
+        <div className="mx-4 mb-16 max-w-4xl bg-white px-5 py-10 lg:mx-auto shadow-[0_2px_0_var(--color-border)] md:px-14 md:py-14">
           {Content ? (
             <Content />
           ) : (
@@ -62,6 +66,12 @@ export default async function CaseStudyPage({
             </p>
           )}
         </div>
+        {next.slug !== slug && (
+          <section className="mx-auto max-w-md px-5 pb-24">
+            <p className="hand mb-6 text-center text-3xl">up next</p>
+            <ProjectFolder project={next} tone="var(--color-mustard)" />
+          </section>
+        )}
       </main>
     </>
   );

@@ -12,19 +12,33 @@ function Word({ word, progress, range }: { word: string; progress: MotionValue<n
   );
 }
 
+type Offset = NonNullable<Parameters<typeof useScroll>[0]>["offset"];
+
 /** A statement that "reads in" word by word as you scroll past it. */
-export function ScrollText({ text, className }: { text: string; className?: string }) {
+export function ScrollText({
+  text,
+  className,
+  as = "p",
+  offset = ["start 0.85", "end 0.45"],
+}: {
+  text: string;
+  className?: string;
+  as?: "p" | "h1" | "h2";
+  /** Scroll window the reveal plays over. Tighten it for text that starts near the fold. */
+  offset?: Offset;
+}) {
   const ref = useRef<HTMLParagraphElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset });
   const words = text.split(" ");
+  const Tag = as as "p";
 
-  if (reduce) return <p className={className}>{text}</p>;
+  if (reduce) return <Tag className={className}>{text}</Tag>;
   return (
-    <p ref={ref} className={className} aria-label={text}>
+    <Tag ref={ref} className={className} aria-label={text}>
       {words.map((w, i) => (
         <Word key={i} word={w} progress={scrollYProgress} range={[i / words.length, (i + 1) / words.length]} />
       ))}
-    </p>
+    </Tag>
   );
 }
