@@ -51,9 +51,10 @@
   }
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
+  overflow-x: clip;
   background-color: var(--color-paper);
   background-image:
     linear-gradient(var(--color-grid) 1px, transparent 1px),
@@ -61,7 +62,6 @@ body {
   background-size: var(--grid) var(--grid);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  overflow-x: clip; /* rotated notes/stickers never cause sideways scroll */
 }
 
 /* Dot-matrix display type */
@@ -100,11 +100,15 @@ body {
   to { transform: scale(0.965); filter: brightness(0.86); }
 }
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
     .recede {
       transform-origin: 50% 0;
       animation: recede linear both;
       animation-range: entry 0% entry 100%;
     }
   }
+}
+
+@media (max-width: 767.98px) {
+  body { padding-bottom: 6.5rem; } /* clear the bottom dock */
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Draggable } from "@/components/canvas/Draggable";
 import { Pop } from "@/components/canvas/Pop";
 import { ScrollText } from "@/components/canvas/ScrollText";
+import { SwipeRow } from "@/components/canvas/SwipeRow";
 import { Sticky } from "@/components/canvas/Sticky";
 
 const corners = ["-left-1 -top-1", "-right-1 -top-1", "-left-1 -bottom-1", "-right-1 -bottom-1"];
@@ -47,17 +48,19 @@ export function AboutTeaser() {
         className="mx-auto mt-10 max-w-4xl text-[clamp(1.6rem,4.2vw,3.1rem)] font-semibold leading-[1.12] tracking-tight"
       />
 
-      <div className="mt-14 grid items-start gap-8 md:grid-cols-2">
-        <Draggable inView rotate={-2.5} className="mx-auto w-full max-w-sm">
-          <Sticky tone="note" className="text-left">
-            Right now: designing and building <b>DeySure</b>, a Nigerian-first app for agreements, invoices, and reminders.
-          </Sticky>
-        </Draggable>
-        <Draggable inView rotate={2} delay={0.12} className="mx-auto w-full max-w-sm">
-          <Sticky tone="sage" className="text-left">
-            Also: I run <b>MickkyStore</b>, a phone retail and repair business, and built the software behind its three branches.
-          </Sticky>
-        </Draggable>
+      <div className="mt-10">
+        <SwipeRow className="sm:gap-8">
+          <Draggable inView rotate={-2.5} className="w-[78%] max-w-xs shrink-0 snap-center sm:w-80">
+            <Sticky tone="note" className="text-left">
+              Right now: designing and building <b>DeySure</b>, a Nigerian-first app for agreements, invoices, and reminders.
+            </Sticky>
+          </Draggable>
+          <Draggable inView rotate={2} delay={0.12} className="w-[78%] max-w-xs shrink-0 snap-center sm:w-80">
+            <Sticky tone="sage" className="text-left">
+              Also: I run <b>MickkyStore</b>, a phone retail and repair business, and built the software behind its three branches.
+            </Sticky>
+          </Draggable>
+        </SwipeRow>
       </div>
 
       <div className="mt-14 flex flex-col items-center gap-4">

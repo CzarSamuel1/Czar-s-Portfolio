@@ -1,7 +1,8 @@
 import { Clock } from "@/components/canvas/Clock";
 import { Draggable } from "@/components/canvas/Draggable";
-import { ScrollText } from "@/components/canvas/ScrollText";
 import { Sticky, Sticker } from "@/components/canvas/Sticky";
+import { SwipeRow } from "@/components/canvas/SwipeRow";
+import { WordReveal } from "@/components/canvas/WordReveal";
 
 const handles = ["-left-1 -top-1", "-right-1 -top-1", "-left-1 -bottom-1", "-right-1 -bottom-1"];
 
@@ -33,47 +34,49 @@ export function Hero() {
         </div>
       </div>
 
-      <h1 className="pixel relative mt-8 w-full max-w-5xl border border-[var(--color-sky)] px-2 py-5 text-[clamp(3rem,15vw,4.75rem)] sm:text-[clamp(2rem,8.5vw,6.5rem)] md:px-8 md:py-7">
-        <span className="block sm:inline">Samuel</span> <span className="block sm:inline">Monday</span>
+      <h1 className="pixel relative mt-8 w-full max-w-5xl border border-[var(--color-sky)] px-3 py-5 text-[clamp(2.75rem,17vw,5rem)] md:px-8 md:py-7 md:text-[clamp(3rem,8.6vw,6.5rem)]">
+        {/* Stacked on phones (Doto is wide), one line from md up */}
+        <WordReveal text="Samuel Monday" delay={0.3} stagger={0.22} wordClassName="block md:inline-block" />
         {handles.map((pos) => (
           <span key={pos} aria-hidden="true" className={`absolute size-2.5 border border-[var(--color-sky)] bg-white ${pos}`} />
         ))}
       </h1>
 
-      <p className="mono mt-10 flex items-center gap-3 text-xs font-bold tracking-[0.16em] sm:text-sm sm:tracking-[0.25em]">
+      <p className="mono mt-10 flex items-center gap-3 text-xs font-bold tracking-[0.2em] sm:text-sm sm:tracking-[0.25em]">
         <span className="size-3 rounded-full bg-[var(--color-sky)]" aria-hidden="true" />
         AVAILABLE FOR NEW WORK
       </p>
 
-      <div className="mt-10 flex w-full flex-col items-center gap-5 sm:flex-row sm:justify-center lg:hidden">
-        {notes.map((n) => (
-          <Draggable key={n.tone} rotate={n.rotate} delay={n.delay}>
-            <Sticky tone={n.tone} className="w-[min(16rem,100%)] text-left">{n.body}</Sticky>
-          </Draggable>
-        ))}
+      <div className="mt-6 w-full lg:hidden">
+        <SwipeRow>
+          {notes.map((n) => (
+            <Draggable key={n.tone} rotate={n.rotate} delay={n.delay} className="w-[78%] max-w-xs shrink-0 snap-center sm:w-64">
+              <Sticky tone={n.tone} className="text-left">{n.body}</Sticky>
+            </Draggable>
+          ))}
+        </SwipeRow>
       </div>
 
       <div className="relative mt-14 w-full max-w-3xl">
         {/* Stickers sit above the headline, then float out to its sides on wide screens */}
-        <div className="mb-8 flex flex-wrap justify-center gap-4 xl:contents">
-          <Draggable rotate={-8} delay={1} className="xl:absolute xl:-left-44 xl:top-3">
+        <div className="mb-8 flex flex-wrap justify-center gap-4 2xl:contents">
+          <Draggable rotate={-8} delay={1} className="2xl:absolute 2xl:-left-44 2xl:top-3">
             <Sticker color="var(--color-mustard)">PRODUCT DESIGNER</Sticker>
           </Draggable>
-          <Draggable rotate={6} delay={1.1} className="xl:absolute xl:-right-36 xl:-top-6">
+          <Draggable rotate={6} delay={1.1} className="2xl:absolute 2xl:-right-36 2xl:-top-6">
             <Sticker color="var(--color-rose)" tail="right" className="!text-white">LAGOS · WAT</Sticker>
           </Draggable>
         </div>
-        <ScrollText
-          as="h2"
-          text="I design digital products from idea to interface."
-          offset={["start 0.98", "end 0.6"]}
-          className="text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.15] tracking-tight"
-        />
-        <ScrollText
-          text="SaaS, business tools, and consumer experiences, built around how the work actually happens."
-          offset={["start 0.98", "end 0.65"]}
-          className="mx-auto mt-6 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]"
-        />
+        <h2 className="text-[clamp(1.75rem,4vw,3rem)] font-semibold leading-[1.15] tracking-tight">
+          <WordReveal text="I design digital products from idea to interface." delay={1} stagger={0.09} />
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-[var(--font-size-lg)] text-[var(--color-ink-muted)]">
+          <WordReveal
+            text="SaaS, business tools, and consumer experiences, built around how the work actually happens."
+            delay={1.7}
+            stagger={0.04}
+          />
+        </p>
       </div>
     </section>
   );
