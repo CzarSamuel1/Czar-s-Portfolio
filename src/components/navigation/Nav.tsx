@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll } from "motion/react";
 import { Ruler } from "@/components/canvas/Ruler";
+import { CONTACT } from "@/lib/contact";
 import { cn } from "@/lib/utils";
 
 const icon = {
@@ -19,11 +20,11 @@ const links = [
   { href: "/work", label: "Work", icon: icon.work },
 ];
 
-// PLACEHOLDER hrefs — replace with real email / GitHub / LinkedIn
 const socials = [
-  { label: "EM", href: "mailto:hello@example.com" },
-  { label: "GH", href: "#" },
-  { label: "LI", href: "#" },
+  { label: "WA", name: "WhatsApp", href: CONTACT.whatsapp },
+  { label: "EM", name: "Email", href: `mailto:${CONTACT.email}` },
+  { label: "X", name: "X (Twitter)", href: CONTACT.x },
+  { label: "LI", name: "LinkedIn", href: CONTACT.linkedin },
 ];
 
 function Glyph({ children }: { children: React.ReactNode }) {
@@ -71,11 +72,13 @@ export function Nav() {
             ))}
           </ul>
         </div>
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-1.5 md:gap-3">
           {socials.map((s) => (
             <a
               key={s.label}
               href={s.href}
+              aria-label={s.name}
+              {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="mono grid size-10 place-items-center rounded-full bg-[var(--color-paper-muted)] text-xs font-bold transition-colors hover:bg-[var(--color-sky)] md:size-11"
             >
               {s.label}

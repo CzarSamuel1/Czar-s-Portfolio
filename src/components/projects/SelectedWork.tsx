@@ -57,47 +57,47 @@ function StackPanel({ project, index, isLast }: { project: Project; index: numbe
     // All panels stick at the same line; later ones slide over earlier ones,
     // and each panel's tab stays visible because the tab row is transparent.
     <article
-      className="relative flex flex-col md:sticky md:top-[var(--header-h)] md:min-h-[calc(100svh-var(--header-h))]"
+      className="sticky top-[calc(var(--header-h)+var(--i)*2.25rem)] flex flex-col md:top-[var(--header-h)] md:min-h-[calc(100svh-var(--header-h))]"
       style={{ "--i": index, viewTimelineName: `--p${index}` } as React.CSSProperties}
     >
-      <div className="relative h-14 shrink-0">
+      <div className="relative h-9 shrink-0 md:h-14">
         <div
-          className="mono absolute bottom-0 left-[calc(var(--i)*25%)] flex h-full w-[23%] items-center justify-center gap-2 text-sm font-bold tracking-[0.2em] [clip-path:polygon(0_100%,14%_0,86%_0,100%_100%)] md:left-[calc(var(--i)*22%)] md:w-[17.5%]"
+          className="mono absolute bottom-0 left-0 flex h-full w-full items-center justify-between gap-2 rounded-t-2xl px-4 text-xs font-bold tracking-[0.18em] md:left-[calc(var(--i)*22%)] md:w-[17.5%] md:justify-center md:rounded-none md:px-0 md:text-sm md:tracking-[0.2em] md:[clip-path:polygon(0_100%,14%_0,86%_0,100%_100%)]"
           style={{ background: c.bg, color: c.fg }}
         >
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
-            <path d="M0 12V8h4V4h4V0h4v12z" />
-          </svg>
-          <span>
-            <span className="hidden sm:inline">PROJECT </span>
-            {num}
+          <span className="flex items-center gap-2">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+              <path d="M0 12V8h4V4h4V0h4v12z" />
+            </svg>
+            PROJECT {num}
           </span>
+          <span className="max-w-[45%] truncate md:hidden">{project.title}</span>
         </div>
       </div>
 
       <div
-        className={`grid flex-1 gap-10 px-5 py-10 shadow-[0_-14px_30px_rgba(20,19,18,0.14)] md:grid-cols-2 md:gap-16 md:px-16 md:py-14${isLast ? "" : " recede"}`}
+        className={`grid flex-1 gap-6 px-5 py-6 shadow-[0_-14px_30px_rgba(20,19,18,0.14)] md:grid-cols-2 md:gap-16 md:px-16 md:py-14${isLast ? "" : " recede"}`}
         style={{ background: c.bg, color: c.fg, animationTimeline: isLast ? undefined : `--p${index + 1}` } as React.CSSProperties}
       >
-        <div className="flex flex-col justify-between gap-10">
+        <div className="flex flex-col justify-between gap-6 md:gap-10">
           <div>
             <p className="mono flex items-center gap-3 text-sm font-bold tracking-[0.2em] uppercase">
-              <span className="size-3 rounded-full" style={{ background: c.fg }} aria-hidden="true" />
+              <span className="size-3 shrink-0 rounded-full" style={{ background: c.fg }} aria-hidden="true" />
               {tags.join(" · ")}
             </p>
-            <h3 className="mt-5 text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-none tracking-tight">
+            <h3 className="mt-4 text-[clamp(2.25rem,5.5vw,4.5rem)] md:mt-5 font-semibold leading-none tracking-tight">
               {project.title}
             </h3>
-            <p className="mt-6 max-w-md text-[var(--font-size-lg)] leading-snug">{project.summary}</p>
+            <p className="mt-4 max-w-md text-[var(--font-size-base)] leading-snug md:mt-6 md:text-[var(--font-size-lg)]">{project.summary}</p>
             <Link
               href={`/work/${project.slug}`}
-              className="mono mt-8 inline-block border-b-2 pb-1 text-sm font-bold tracking-[0.2em] uppercase"
+              className="mono mt-5 inline-block border-b-2 md:mt-8 pb-1 text-sm font-bold tracking-[0.2em] uppercase"
               style={{ borderColor: c.fg }}
             >
               View project ↗
             </Link>
           </div>
-          <ul className="flex flex-wrap gap-3">
+          <ul className="hidden flex-wrap gap-3 md:flex">
             {tags.map((t) => (
               <li
                 key={t}
@@ -111,7 +111,7 @@ function StackPanel({ project, index, isLast }: { project: Project; index: numbe
         </div>
 
         {/* Image framed like a selected layer */}
-        <div className="relative self-center">
+        <div className="relative order-first self-center md:order-none">
           <div className="relative aspect-[16/10] border border-[var(--color-ink)] bg-[var(--color-ink)]">
             {project.isPlaceholder ? (
               <div className="grid h-full place-items-center px-6 text-center">
